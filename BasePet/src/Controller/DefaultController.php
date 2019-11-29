@@ -62,4 +62,55 @@ class DefaultController extends AbstractController{
             "users" => $users
             ]);
     }
+    public function animal():Response
+    {
+            //BDD
+        $users = [
+            [ "name" => "Ivan" , "poste" => "j ai"],
+            [ "name" => "Sacard" , "poste" => "pas d "],
+            [ "name"=>"Havane","poste"=>"inspiration"],
+            
+        ];
+
+
+
+        return $this->render('animal.html.twig', [
+            'title' => "crash",
+            "users" => $users
+            ]);
+    }
+    public function facture():Response
+    {
+            //BDD
+        $users = [
+            [ "name" => "Ivan" , "poste" => "j ai"],
+            [ "name" => "Sacard" , "poste" => "pas d "],
+            [ "name"=>"Havane","poste"=>"inspiration"],
+            
+        ];
+
+
+
+        return $this->render('facturation.html.twig', [
+            'title' => "crash",
+            "users" => $users
+            ]);
+    }
+    public function user():Response
+    {
+            //BDD
+        $users = [
+            [ "name" => "Ivan" , "poste" => "j ai"],
+            [ "name" => "Sacard" , "poste" => "pas d "],
+            [ "name"=>"Havane","poste"=>"inspiration"],
+            
+        ];
+
+
+
+        return $this->render('user.html.twig', [
+            'title' => "crash",
+            "users" => $users
+            ]);
+    }
 }
