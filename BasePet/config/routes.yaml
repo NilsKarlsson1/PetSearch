@@ -11,3 +11,15 @@ login:
     path: /login
     controller: App\Controller\DefaultController::login
 
+user:
+    path: /user
+    controller: App\Controller\DefaultController::user
+
+animal:
+    path: /animal
+    controller: App\Controller\DefaultController::animal
+
+facture:
+    path: /facture
+    controller: App\Controller\DefaultController::facture
+
