@@ -1,3 +1,13 @@
 index:
     path: /
     controller: App\Controller\DefaultController::index
+
+contact:
+    path: /contact
+    controller: App\Controller\DefaultController::contact
+
+
+login:
+    path: /login
+    controller: App\Controller\DefaultController::login
+
