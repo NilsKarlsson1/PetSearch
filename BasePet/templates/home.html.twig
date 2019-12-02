@@ -17,33 +17,96 @@
         </div>
       </div>
       <div class="row text-center">
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x">
-            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-          </span>
-          <h4 class="service-heading">E-Commerce</h4>
-          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-        </div>
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x">
-            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-          </span>
-          <h4 class="service-heading">Responsive Design</h4>
-          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-        </div>
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x">
-            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-          </span>
-          <h4 class="service-heading">Web Security</h4>
-          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-        </div>
+        <h3 class="section-subheading text-muted">Nombre de nouveaux visiteurs</h3>
+        
+        <div id="chartdiv"></div>
+
       </div>
     </div>
   </section>
+
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+/**
+ * Define data for each year
+ */
+var chartData = {
+  "visitors": [
+    { "sector": "Agriculture", "size": 6.6 },
+    { "sector": "Mining and Quarrying", "size": 0.6 },
+    { "sector": "Manufacturing", "size": 23.2 },
+    { "sector": "Electricity and Water", "size": 2.2 },
+    { "sector": "Construction", "size": 4.5 },
+    { "sector": "Trade (Wholesale, Retail, Motor)", "size": 14.6 },
+    { "sector": "Transport and Communication", "size": 9.3 },
+    { "sector": "Finance, real estate and business services", "size": 22.5 } ]
+};
+
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.PieChart);
+
+// Add data
+chart.data = [
+  { "sector": "Agriculture", "size": 6.6 },
+  { "sector": "Mining and Quarrying", "size": 0.6 },
+  { "sector": "Manufacturing", "size": 23.2 },
+  { "sector": "Electricity and Water", "size": 2.2 },
+  { "sector": "Construction", "size": 4.5 },
+  { "sector": "Trade (Wholesale, Retail, Motor)", "size": 14.6 },
+  { "sector": "Transport and Communication", "size": 9.3 },
+  { "sector": "Finance, real estate and business services", "size": 22.5 }
+];
+
+// Add label
+chart.innerRadius = 100;
+var label = chart.seriesContainer.createChild(am4core.Label);
+label.text = "toto";
+label.horizontalCenter = "middle";
+label.verticalCenter = "middle";
+label.fontSize = 50;
+
+// Add and configure Series
+var pieSeries = chart.series.push(new am4charts.PieSeries());
+pieSeries.dataFields.value = "size";
+pieSeries.dataFields.category = "sector";
+
+
+function loop() {
+  //chart.allLabels[0].text = currentYear;
+  var data = chartData[visitors];
+  for(var i = 0; i < data.length; i++) {
+    chart.data[i].size = data[i].size;
+  }
+  chart.invalidateRawData();
+}
+
+loop();
+
+}); // end am4core.ready()
+</script>
+
+
+
+
 
 {% endblock %}
 
