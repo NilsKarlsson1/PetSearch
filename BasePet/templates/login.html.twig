@@ -28,7 +28,7 @@
               <div class="clearfix"></div>
               <div class="col-lg-12 text-center">
                 <div id="success"></div>
-                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit"  onclick="location.href='/'">Login</button>
+                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit"  onclick="reqlog()">Login</button>
               </div>
             </div>
           </form>
@@ -37,4 +37,19 @@
     </div>
   </section>
 
+<script>
+function reqlog() {
+  event.preventDefault();
+  let email = document.getElementById("email").value,
+   password = document.getElementById("password").value;
+  if(email != "" && password != "")
+    if(email != "toto@fr.fr" || password != "moto")
+      window.location.href = "/error";
+    else 
+      window.location.href = "/index";
+  
+}
+</script>
+
 {% endblock %}
+

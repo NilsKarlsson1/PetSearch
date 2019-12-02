@@ -30,7 +30,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">PetSearch</a>
-      {% if app.request.pathinfo != "/login"%}
+      {% if app.request.pathinfo != "/" and app.request.pathinfo != "/error"%}
       
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -39,7 +39,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/">Home</a>
+            <a class="nav-link js-scroll-trigger" href="/index">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/user">User</a>
@@ -54,7 +54,7 @@
             <a class="nav-link js-scroll-trigger" href="/contact">Localisation</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/login">Logout</a>
+            <a class="nav-link js-scroll-trigger" href="/">Logout</a>
           </li>
         </ul>
       </div>
@@ -85,7 +85,7 @@
 
   <!-- Contact form JavaScript -->
   <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script>
+
 
   <!-- Custom scripts for this template -->
   <script src="js/agency.min.js"></script>
