@@ -1,5 +1,5 @@
 index:
-    path: /
+    path: /index
     controller: App\Controller\DefaultController::index
 
 contact:
@@ -8,7 +8,7 @@ contact:
 
 
 login:
-    path: /login
+    path: /
     controller: App\Controller\DefaultController::login
 
 user:
@@ -22,4 +22,8 @@ animal:
 facture:
     path: /facture
     controller: App\Controller\DefaultController::facture
+
+error:
+    path: /error
+    controller: App\Controller\DefaultController::error
 
