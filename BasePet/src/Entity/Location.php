@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Location
  *
  * @ORM\Table(name="location", indexes={@ORM\Index(name="fk_location_pet1_idx", columns={"pet_idpet"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\LocationRepository")
  */
 class Location
 {
@@ -95,7 +95,7 @@ class Location
         return $this;
     }
 
-    public function getPetIdpet(): ?Pet
+    public function getPetIdpet()
     {
         return $this->petIdpet;
     }
