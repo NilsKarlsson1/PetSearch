@@ -99,7 +99,7 @@ class DefaultController extends BaseController{
             "users" => $users
             ]);
     }
-    public function user(EntityManagerInterface $em, $page=1):Response
+    public function user(EntityManagerInterface $em):Response
     {
             //BDD
         $listUser = $em->getRepository(User::class)->createQueryBuilder('u')
