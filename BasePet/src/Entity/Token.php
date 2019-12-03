@@ -131,7 +131,7 @@ class Token
         return $this;
     }
 
-    public function getUserIduser(): ?User
+    public function getUserIduser()
     {
         return $this->userIduser;
     }
