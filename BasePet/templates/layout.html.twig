@@ -30,8 +30,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">PetSearch</a>
-      {% if app.request.pathinfo != "/login"%}
-      
+      {% if app.request.pathinfo != "/" and app.request.pathinfo != "/error"%}
+
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -39,7 +39,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/">Home</a>
+            <a class="nav-link js-scroll-trigger" href="/index">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/user">User</a>
@@ -54,11 +54,13 @@
             <a class="nav-link js-scroll-trigger" href="/contact">Localisation</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/login">Logout</a>
+            <a class="nav-link js-scroll-trigger" href="/" onClick="eraseCookie('connect')">Logout</a>
           </li>
         </ul>
       </div>
+          
       {% endif %}
+
     </div>
   </nav>
 
@@ -85,10 +87,44 @@
 
   <!-- Contact form JavaScript -->
   <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script>
+
 
   <!-- Custom scripts for this template -->
   <script src="js/agency.min.js"></script>
+
+
+  <script>
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+let url =  window.location.pathname+window.location.search ;
+console.log(url)
+if(getCookie('connect')!="true" ) {
+  if(url!='/' && url!='/error'){
+    window.location.href="/"
+  }
+}
+getCookie('connect')
+function eraseCookie(name) {   
+    document.cookie = name+'=; Max-Age=-99999999;';  
+}
+  </script>
 
 </body>
 

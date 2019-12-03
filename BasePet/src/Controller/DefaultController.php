@@ -107,4 +107,23 @@ class DefaultController extends BaseController{
         ->getResult();
         return $this->render('user.html.twig', ['listuser' => $listUser]);
      }
+       
+
+    public function error():Response
+    {
+            //BDD
+        $users = [
+            [ "name" => "Ivan" , "poste" => "j ai"],
+            [ "name" => "Sacard" , "poste" => "pas d "],
+            [ "name"=>"Havane","poste"=>"inspiration"],
+            
+        ];
+
+
+
+        return $this->render('error.html.twig', [
+            'title' => "crash",
+            "users" => $users
+            ]);
+    }
 }
