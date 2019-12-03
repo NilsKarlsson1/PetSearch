@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Response;
+use App\Controller\BaseController;
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
-class DefaultController extends AbstractController{
+class DefaultController extends BaseController{
 
     public function index():Response
     {
@@ -96,21 +99,12 @@ class DefaultController extends AbstractController{
             "users" => $users
             ]);
     }
-    public function user():Response
+    public function user(EntityManagerInterface $em, $page=1):Response
     {
             //BDD
-        $users = [
-            [ "name" => "Ivan" , "poste" => "j ai"],
-            [ "name" => "Sacard" , "poste" => "pas d "],
-            [ "name"=>"Havane","poste"=>"inspiration"],
-            
-        ];
-
-
-
-        return $this->render('user.html.twig', [
-            'title' => "crash",
-            "users" => $users
-            ]);
-    }
+        $listUser = $em->getRepository(User::class)->createQueryBuilder('u')
+        ->getQuery()
+        ->getResult();
+        return $this->render('user.html.twig', ['listuser' => $listUser]);
+     }
 }
