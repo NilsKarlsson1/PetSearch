@@ -6,9 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
- *
+ *@ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
+<<<<<<< HEAD
  * @ORM\Entity
+=======
+ * 
+>>>>>>> 5ca01b744f45c202ad58e81d5e6287dc00aab3c8
  */
 class User
 {

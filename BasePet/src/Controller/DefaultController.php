@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Controller\BaseController;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class DefaultController extends BaseController{
+class DefaultController extends AbstractController {
 
     public function index():Response
     {
@@ -102,9 +102,12 @@ class DefaultController extends BaseController{
     public function user(EntityManagerInterface $em):Response
     {
             //BDD
-        $listUser = $em->getRepository(User::class)->createQueryBuilder('u')
+        $listUser = $em->getRepository(User::class);
+        /*->createQueryBuilder('u')
+        ->select('count(u.email) as mailType, u.iduser, u.lastname, u.firstname, u.city')
         ->getQuery()
-        ->getResult();
+        ->getResult();*/
+
         return $this->render('user.html.twig', ['listuser' => $listUser]);
      }
        

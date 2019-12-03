@@ -15,10 +15,10 @@ class TokenRepository extends ServiceEntityRepository {
         parent::__construct($ManagerRegistry, Token::class);
     }
 
-    public function getAllconnexion ($type = 'Bear', $pageId = 1) {
-        return $this->createQuery('COUNT(t.idtoken)')
+    public function listconnexion ($type = 'Bear', $pageId = 1) {
+        return $this->createQueryBuilder('COUNT(t.idtoken)')
         ->from(Token::class, 't')
-        ->innerJoin(User::class, 'u', Expr\Join::WITH , 'userIduser =u.idusers')
+        ->innerJoin(User::class, 'u', 'WITH' , 'userIduser =u.idusers')
         ->where('userIduser = :u.idusers')
         ->andWhere('t.type = :type')
         ->setParameter('t.type', $type)
