@@ -17,13 +17,9 @@ class UserController extends AbstractController{
     
     public function user(EntityManagerInterface $em, UserRepository $repository):Response
     {
-            //BDD
-        //$repository = $em->getRepository(User::class);
-        $listUser= $repository->listAllUser(1);
-        /*->createQueryBuilder('u')
-        ->select('count(u.email) as mailType, u.iduser, u.lastname, u.firstname, u.city')
-        ->getQuery()
-        ->getResult();*/
+            
+        $listUser= $repository->listAllUser(0);
+        
 
         return $this->render('user.html.twig', ['listuser' => $listUser]);
      }

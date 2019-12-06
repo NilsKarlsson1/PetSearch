@@ -6,6 +6,7 @@
 
 
 {% block content %}
+
  <!-- User -->
   <section class="page-section" id="user">
     <div class="container">
@@ -30,7 +31,7 @@
               <tr>
                 <th scope="row">{{listu.iduser}}</th>
                 <td>{{listu.lastname}}</td>
-                <td>v{{listu.firstname}}</td>
+                <td>{{listu.firstname}}</td>
                 <td>{{listu.city}}</td>
                 <!--<td></td>-->
               </tr>
@@ -46,10 +47,10 @@
                     </li>
                     
                     <li class="page-item">
-                        <a class="page-link" href="#">1</a>
+                        <a class="page-link" href="#">{{listuser[0].iduser}}</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
+                        <a class="page-link" href='/user'+{{listuser[0].iduser}} aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -64,10 +65,19 @@
   </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script> 
+
+
+
 $(document).ready(function(){
   $("#userSection").click(function(){
     $("#usertab").slideToggle("slow");
   });
 });
 </script>
+
+
+
 {% endblock %}
+
+
+
