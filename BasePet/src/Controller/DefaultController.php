@@ -4,7 +4,6 @@ namespace App\Controller;
 
 
 use Symfony\Component\HttpFoundation\Response;
-use App\Controller\BaseController;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -82,7 +81,7 @@ class DefaultController extends AbstractController {
             "users" => $users
             ]);
     }
-    public function facture():Response
+    /**public function facture():Response
     {
             //BDD
         $users = [
@@ -98,18 +97,18 @@ class DefaultController extends AbstractController {
             'title' => "crash",
             "users" => $users
             ]);
-    }
-    public function user(EntityManagerInterface $em):Response
+    }*/
+    /*public function user(EntityManagerInterface $em):Response
     {
             //BDD
         $listUser = $em->getRepository(User::class);
-        /*->createQueryBuilder('u')
+        ->createQueryBuilder('u')
         ->select('count(u.email) as mailType, u.iduser, u.lastname, u.firstname, u.city')
         ->getQuery()
-        ->getResult();*/
+        ->getResult();
 
         return $this->render('user.html.twig', ['listuser' => $listUser]);
-     }
+     }*/
        
 
     public function error():Response

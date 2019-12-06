@@ -15,14 +15,27 @@ class TokenRepository extends ServiceEntityRepository {
         parent::__construct($ManagerRegistry, Token::class);
     }
 
-    public function listconnexion ($type = 'Bear', $pageId = 1) {
-        return $this->createQueryBuilder('COUNT(t.idtoken)')
-        ->from(Token::class, 't')
-        ->innerJoin(User::class, 'u', 'WITH' , 'userIduser =u.idusers')
-        ->where('userIduser = :u.idusers')
+    /*public function listconnexion ($type = 'Bear') {
+        return $this->createQueryBuilder('t')
+        ->select('COUNT(t.userIduser)')
+        ->innerJoin(User::class, 'u', 'WITH' , 't.userIduser = u.iduser')
         ->andWhere('t.type = :type')
         ->setParameter('t.type', $type)
         ;
-    }
+    }*/
 
+    /**
+     * The number of new connections per day.
+     */
+    public function numberNewConnexionDay () {
+        return $this->createQueryBuilder('t')
+        ->select('COUNT(t.userIduser) as nbConnexionDay, 
+        t.type, DAY(t.createdat) AS tokenByDay')
+        ->andWhere('t.type = :type')
+        ->setParameter('type', 'Bearer')
+        ->groupBy('tokenByDay')
+        ->getQuery()
+        ->getResult();
+    }
+   
 }

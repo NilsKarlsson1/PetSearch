@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +20,7 @@ class UserController extends AbstractController{
         $listUser= $repository->listAllUser(1);
         
         return $this->render('user.html.twig', ['listuser' => $listUser]);
+       
      }
 
      /**
@@ -55,7 +56,7 @@ class UserController extends AbstractController{
      public function numberUserByMail (UserRepository $repository, Request $request) :Response
      {
          $typeMail = $request->query->get('typeMail', 'yahoo');
-         $nbUserByMail = $repository->nombreUsersbyEmailType($typeMail);
+         $nbUserByMail = $repository->numbreUsersbyEmailType($typeMail);
 
         return $this->render('user.html.twig', ['nbUserByMail' => $nbUserByMail ]);
      }
@@ -63,8 +64,25 @@ class UserController extends AbstractController{
     /*
      * nombre d'utilisateur actif
      */
-    public function  numberActiveUsers () {
+    public function  numberActiveUsers (UserRepository $repository, Request $request) :Response
+    {
+        $statut = $request->query->get('statut', 1);
+        $nbUserActif = $repository->numberOfActiveUsers($statut);
 
+        return $this->render('user.html.twig', ['nbUserActif' => $nbUserActif ]);
     }
     
+    /**
+     * Les nombre d’utilisateur selon leur tranche d'age
+     * a revoir
+     */
+    public function numberByUserAge (UserRepository $repository, Request $request) :Response 
+    {
+        //$age = $request->query->get('age', 18);
+        //$age2= $request->query->get('age2', 25);
+        $nbUserByAge = $repository->numberUserAge(18, 25);
+
+        return $this->render('user.html.twig', ['nbUserByAge' => $nbUserByAge ]);
+    }
+
 }

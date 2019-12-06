@@ -26,12 +26,12 @@
               </tr>
             </thead>
             <tbody>
-              {% for listu in listuser %}
+              {% for data in listuser %}
               <tr>
-                <th scope="row">{{listu.iduser}}</th>
-                <td>{{listu.lastname}}</td>
-                <td>v{{listu.firstname}}</td>
-                <td>{{listu.city}}</td>
+                <th scope="row">{{data.iduser}}</th>
+                <td>{{data.lastname}}</td>
+                <td>v{{data.firstname}}</td>
+                <td>{{data.city}}</td>
                 <!--<td></td>-->
               </tr>
               {% endfor %}

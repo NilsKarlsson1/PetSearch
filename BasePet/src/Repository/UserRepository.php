@@ -14,14 +14,13 @@ class UserRepository extends ServiceEntityRepository {
     }
 
     //All user
-    public function listAllUser($pageId=0)
+    public function listAllUser()
     {
         return $this->createQueryBuilder('u')
-            ->setFirstResult($pageId)
-            ->orderBy('u.iduser', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        ->select('u.iduser, u.firstname, u.lastname')
+        ->orderBy('u.iduser')
+        ->getQuery()
+        ->getResult()
         ;
     }
 
@@ -57,16 +56,43 @@ class UserRepository extends ServiceEntityRepository {
     }
 
     // nombre utilisateur selon le type de boite mail
-    public function nombreUsersbyEmailType($typeMail) {
+    public function numbreUsersbyEmailType($typeMail) {
         return $this->createQueryBuilder('u')
-        ->select('COUNT(u.email) as nomberUserMailType, u.email')
+        ->select('COUNT(u.email) as nomberUserMailType')
         ->andWhere('u.email LIKE :typeMail')
         ->setParameter( 'typeMail', '%'.$typeMail.'%')
         ->getQuery()
-        ->getResult()
-        ;
-
+        ->getResult();
     }
+
+    /*
+     * nombre d'utilisateur actif
+     */
+    public function numberOfActiveUsers ($statut) {
+        return $this->createQueryBuilder('u')
+        ->select('COUNT(u.iduser) as activeUser, u.active')
+        ->andWhere('u.active = :statut')
+        ->setParameter('statut', $statut)
+        ->getQuery()
+        ->getResult();
+    }
+
+    /**
+     * a revoir
+     */
+    public function numberUserAge($age1, $age2):array
+    {
+        return $this->createQueryBuilder('u')
+        ->select('COUNT(u.iduser) as nbUserAge, DATE_DIFF( CURRENT_DATE(),u.birthday )')
+        ->where('age > :age1')
+        ->andWhere('age < :age2')
+        ->setParameter('age1', $age1)
+        ->setParameter('age2', $age2)
+        ->getQuery()
+        ->getResult();
+        
+    }
+
 
   
 }

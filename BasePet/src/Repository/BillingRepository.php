@@ -14,15 +14,30 @@ class BillingRepository extends ServiceEntityRepository {
 
         parent:: __construct($ManagerRegistry, Billing::class);
     } 
-
+    //
     public function amountUser() {
-        return $this->createQueryBuilder('u.firstname, u.lastname, COUNT(b.amount) as sumAmount')
-        ->from(Billing::class, 'b')
-        ->innerJoin(User::class, 'u', 'WITH', ' b.userIduser = u.idusers')
-        ->where('b.userIduser = :u.idusers')
-        ->groupBy('YEAR(dateBilling), MONTH(dateBilling)')
+        return $this->createQueryBuilder('b')
+        ->select('u.iduser,
+         COUNT(b.amount) as sumAmount,
+         MONTH(b.datebilling) AS amountMonth,
+         DAY(b.datebilling) AS amountDay')
+        ->innerJoin(User::class, 'u', 'WITH', 'b.userIduser = u.iduser')
+        ->groupBy('amountMonth')
+        ->addGroupBy('amountDay')
         ->getQuery()
         ->getResult();
     }
 
+    /**
+     * The total amount paid by all users.
+     */
+    public function totalAmntPaidAllUser() {
+        return $this->createQueryBuilder('b')
+        ->select('SUM(b.amount) as totalAmnt')
+        ->innerJoin(User::class, 'u', 'WITH', 'b.userIduser = u.iduser')
+        ->getQuery()
+        ->getResult();
+    } 
+
+    
 }
