@@ -14,7 +14,7 @@ class UserRepository extends ServiceEntityRepository {
     }
 
     //All user
-    public function listAllUser($pageId=0)
+    public function listAllUser($pageId)
     {
         return $this->createQueryBuilder('u')
             ->setFirstResult($pageId)
@@ -26,7 +26,7 @@ class UserRepository extends ServiceEntityRepository {
     }
 
     //les users dans la meme ville 
-    public function userSameCountry($city,  $pageId = 1) {
+    public function userSameCountry($city,  $pageId) {
         return $this->createQueryBuilder('COUNT(u.email)')
         ->from(User::class, 'u')
         ->where('u.city= :u.city')

@@ -99,17 +99,17 @@ class DefaultController extends AbstractController {
             "users" => $users
             ]);
     }
-    public function user(EntityManagerInterface $em):Response
+  /*  public function user(EntityManagerInterface $em):Response
     {
             //BDD
-        $listUser = $em->getRepository(User::class);
-        /*->createQueryBuilder('u')
+        $listUser = $em->getRepository(User::class)
+        ->createQueryBuilder('u')
         ->select('count(u.email) as mailType, u.iduser, u.lastname, u.firstname, u.city')
         ->getQuery()
-        ->getResult();*/
+        ->getResult();
 
         return $this->render('user.html.twig', ['listuser' => $listUser]);
-     }
+     }*/
        
 
     public function error():Response
