@@ -13,17 +13,67 @@ login:
 
 user:
     path: /user
-    controller: App\Controller\UserController::user 
+    controller: App\Controller\UserController::user
+    
+user_Country:
+    path: /user/country
+    controller: App\Controller\UserController::sameCountry 
+
+user_new_register:
+    path: /user
+    controller: App\Controller\UserController::numberNewRegister
+
+user_sexe:
+    path: /user/sexe
+    controller: App\Controller\UserController::numberUserBySexe
+
+user_mail_type:
+    path: /type
+    controller: App\Controller\UserController::numberUserByMail
+
+user_active:
+    path: /user/statut
+    controller: App\Controller\UserController::numberActiveUsers
+
+user_age:
+    path: /user/age
+    controller: App\Controller\UserController::numberByUserAge 
 
 animal:
     path: /animal
-    controller: App\Controller\DefaultController::animal
+    controller: App\Controller\PetController::petPerUser
+
+animal_registered:
+    path: /animal/registered
+    controller: App\Controller\PetController::petRegistered 
+
+animal_acquired:
+    path: /animal/acquired
+    controller: App\Controller\PetController::petAcquired
+
+animal_bycountry:
+    path: /animal/country
+    controller: App\Controller\PetController:petByCountry 
+
+animal_petByType:
+    path: /animal/type
+    controller: App\Controller\PetController:petByType
+
+token:
+    path: /token
+    controller: App\Controller\TokenController::passLostByUser
 
 facture:
     path: /facture
-    controller: App\Controller\DefaultController::facture
+    controller: App\Controller\BillingController::totalAmntPaidAll
+
+facture_subscriptions:
+    path: /facture/subscription
+    controller: App\Controller\BillingController::numberSubscriptions
 
 error:
     path: /error
     controller: App\Controller\DefaultController::error
+
+
 
