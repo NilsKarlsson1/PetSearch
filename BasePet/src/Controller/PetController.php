@@ -8,7 +8,6 @@ use App\Repository\PetRepository;
 use Symfony\Component\HttpFoundation\Request;
 
 class PetController extends AbstractController{
-    
         
     /**
      * the number of animals per users.

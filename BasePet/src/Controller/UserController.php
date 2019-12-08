@@ -6,9 +6,12 @@ namespace App\Controller;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends AbstractController{
+    
 
     /**
      * @ var UserRepository
@@ -17,7 +20,7 @@ class UserController extends AbstractController{
     public function user(UserRepository $repository):Response
     {
             //la liste des utilisateur
-        $listUser= $repository->listAllUser(1);
+        $listUser= $repository->listAllUser();
         
         return $this->render('user.html.twig', ['listuser' => $listUser]);
        
@@ -80,9 +83,12 @@ class UserController extends AbstractController{
     {
         //$age = $request->query->get('age', 18);
         //$age2= $request->query->get('age2', 25);
-        $nbUserByAge = $repository->numberUserAge(18, 25);
+        $nbUserByAge = $repository->numberUserAge();
 
-        return $this->render('user.html.twig', ['nbUserByAge' => $nbUserByAge ]);
+    return $this->render('user.html.twig', ['nbUserByAge' => $nbUserByAge ]);
+    
     }
+
+   
 
 }

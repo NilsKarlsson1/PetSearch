@@ -37,7 +37,7 @@ user_active:
 
 user_age:
     path: /user/age
-    controller: App\Controller\UserController::numberByUserAge
+    controller: App\Controller\UserController::numberByUserAge 
 
 animal:
     path: /animal
@@ -61,11 +61,15 @@ animal_petByType:
 
 token:
     path: /token
-    controller: App\Controller\TokenController::nbConnexionByDay
+    controller: App\Controller\TokenController::passLostByUser
 
 facture:
     path: /facture
     controller: App\Controller\BillingController::totalAmntPaidAll
+
+facture_subscriptions:
+    path: /facture/subscription
+    controller: App\Controller\BillingController::numberSubscriptions
 
 error:
     path: /error
