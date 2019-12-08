@@ -19,7 +19,7 @@ class UserController extends AbstractController{
     
     public function user(UserRepository $repository):Response
     {
-            //la liste des utilisateur
+
         $listUser= $repository->listAllUser();
         
         return $this->render('user.html.twig', ['listuser' => $listUser]);

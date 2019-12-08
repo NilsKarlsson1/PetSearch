@@ -14,6 +14,7 @@ class UserRepository extends ServiceEntityRepository {
 
     //All user
     public function listAllUser()
+
     {
         return $this->createQueryBuilder('u')
         ->select('u.iduser, u.firstname, u.lastname, u.city')
@@ -22,6 +23,7 @@ class UserRepository extends ServiceEntityRepository {
         ->getResult()
         ;
     }
+
 
     //le nombre d'utilisateur par ville commun 
     public function userSameCountry($country) {

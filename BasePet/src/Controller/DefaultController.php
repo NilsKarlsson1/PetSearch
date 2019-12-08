@@ -97,11 +97,12 @@ class DefaultController extends AbstractController {
             'title' => "crash",
             "users" => $users
             ]);
+
     }*/
     /*public function user(EntityManagerInterface $em):Response
     {
             //BDD
-        $listUser = $em->getRepository(User::class);
+        $listUser = $em->getRepository(User::class)
         ->createQueryBuilder('u')
         ->select('count(u.email) as mailType, u.iduser, u.lastname, u.firstname, u.city')
         ->getQuery()

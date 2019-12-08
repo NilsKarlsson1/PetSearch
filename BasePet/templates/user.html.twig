@@ -6,6 +6,7 @@
 
 
 {% block content %}
+
  <!-- User -->
   <section class="page-section" id="user">
     <div class="container">
@@ -14,9 +15,9 @@
           <h2 class="section-heading text-uppercase">Utilisateurs</h2>
         </div>
         <div >
-        <h4 id="userSection" class="thead-dark">La Liste des Utilisateurs</h4>
+        <h4 id="userSection">La Liste des Utilisateurs</h4>
           <table class="table" id="usertab">
-            <thead class="thead-dark">
+            
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">First</th>
@@ -24,7 +25,7 @@
                 <th scope="col">City</th>
                 <!--<th scope="col">mailType</th>-->
               </tr>
-            </thead>
+            
             <tbody>
               {% for data in listuser %}
               <tr>
@@ -46,10 +47,10 @@
                     </li>
                     
                     <li class="page-item">
-                        <a class="page-link" href="#">1</a>
+                        <a class="page-link" href="#">{{listuser[0].iduser}}</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
+                        <a class="page-link" href='/user'+{{listuser[0].iduser}} aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -64,6 +65,9 @@
   </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script> 
+
+
+
 $(document).ready(function(){
   $("#userSection").click(function(){
     $("#usertab").slideToggle("slow");
@@ -71,3 +75,4 @@ $(document).ready(function(){
 });
 </script>
 {% endblock %}
+
